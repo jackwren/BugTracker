@@ -26,7 +26,27 @@ namespace BugReporter
 
         private void sign_in_Click(object sender, EventArgs e)
         {
-            login();
+
+            if (checkInputs())
+            {
+                login();
+            }
+            else { }
+        }
+
+        public bool checkInputs()
+        {
+            bool rtnvalue = true;
+
+            if (string.IsNullOrEmpty(txt_user_name.Text) ||
+                string.IsNullOrEmpty(txt_password.Text))
+            {
+                MessageBox.Show("Error: Please check your inputs");
+                rtnvalue = false;
+            }
+
+            return (rtnvalue);
+
         }
 
         public void login()
@@ -49,6 +69,7 @@ namespace BugReporter
                         this.Hide();
                         Home frmchild = new Home();
                         frmchild.Show();
+                        frmchild.WriteToText("Welcome "+ txt_user_name.Text);
                     }  
                     else
                     {

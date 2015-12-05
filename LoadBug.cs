@@ -37,7 +37,6 @@ namespace BugReporter
 
                 listView1.Items.Clear();
 
-                listView1.Font = new Font(defaultFont.FontFamily, defaultFont.Size, FontStyle.Bold);
 
                 while (mySqlDataReader.Read())
                 {
@@ -60,6 +59,19 @@ namespace BugReporter
                 MessageBox.Show("Failure" + ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void edit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            EditData edit = new EditData();
+            edit.Show();
+            
         }
 
     }

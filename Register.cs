@@ -70,10 +70,12 @@ namespace BugReporter
                 cmdInsert.Parameters.AddWithValue("@user", user);
                 cmdInsert.Parameters.AddWithValue("@pass", pass);
                 cmdInsert.ExecuteNonQuery();
+                MessageBox.Show("Succesfully signed up, you can now log in!");
+                this.Close();
             }
             catch (SqlCeException ex)
             {
-                MessageBox.Show(user + " .." + ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(" This username - "+ user +" has already been used, try another!" );
             }
 
         }
@@ -84,10 +86,10 @@ namespace BugReporter
             {
 
                 String commandString = "INSERT INTO users(user_name, password) VALUES (@user, @pass)";
-
                 insertRecord(textBox1.Text, textBox2.Text, commandString);
                 populateListBox();
-                MessageBox.Show("Succesfully signed up, you can now log in!");
+                
+                
             }
         }
 

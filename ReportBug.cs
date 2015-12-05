@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlServerCe;
 
+
 namespace BugReporter
 {
     public partial class ReportBug : Form
@@ -20,6 +21,7 @@ namespace BugReporter
         {
             InitializeComponent();
             populateListBox();
+            
         }
 
         public void populateListBox()
@@ -80,6 +82,7 @@ namespace BugReporter
                 cmdInsert.Parameters.AddWithValue("@status", status);
                 cmdInsert.Parameters.AddWithValue("@importance", importance);
             	cmdInsert.ExecuteNonQuery();
+                MessageBox.Show("Succesfully reported your bug to the database!");
         	}
         	catch (SqlCeException ex)
         	{
@@ -99,13 +102,18 @@ namespace BugReporter
             	insertRecord(txtID.Text, txtCode.Text, txtStatus.Text, cmbImp.Text, commandString);
             	populateListBox ();
             	cleartxtBoxes ();
-                MessageBox.Show("Succesfully reported your bug to the database!");
+                
         	}
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             cleartxtBoxes();
+        }
+
+        private void txtCode_TextChanged(object sender, EventArgs e)
+        {
+               
         }
     }
 }

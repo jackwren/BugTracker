@@ -55,5 +55,17 @@ namespace BugReporter
         {
 
         }
+
+        private void log_out_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Login log = new Login();
+            log.Show();
+        }
+        public void WriteToText(string sData)
+        {
+            // Here is where I wrote to my textbox
+            label1.Text = sData;
+        }
     }
 }
