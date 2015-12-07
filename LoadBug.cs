@@ -14,7 +14,7 @@ namespace BugReporter
     public partial class LoadBug : Form
     {
         SqlCeConnection mySqlConnection;
-        Font defaultFont = SystemFonts.DefaultFont;
+        
         public LoadBug()
         {
             InitializeComponent();
@@ -25,6 +25,7 @@ namespace BugReporter
         {
             mySqlConnection = new SqlCeConnection(@"Data Source=C:\temp\Mydatabase.sdf ");
 
+            //writes a sql query to select everything from the tbl_bug
             String selcmd = "SELECT bug_id, code, status, importance FROM tbl_bug ORDER BY bug_id";
 
             SqlCeCommand mySqlCommand = new SqlCeCommand(selcmd, mySqlConnection);
@@ -40,7 +41,7 @@ namespace BugReporter
 
                 while (mySqlDataReader.Read())
                 {
-
+                    // adds everything from database into a listview table, with sub boxes to space into columns
                     ListViewItem item1 = new ListViewItem(mySqlDataReader["bug_id"] + ":");
                     item1.SubItems.Add(mySqlDataReader["code"] + "");
                     item1.SubItems.Add(mySqlDataReader["status"] + "");

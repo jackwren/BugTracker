@@ -26,8 +26,10 @@ namespace BugReporter
 
         private void Connection()
         {
+            //locates the database in temp folder
             mySqlConnection = new SqlCeConnection(@"Data Source=C:\temp\Mydatabase.sdf ");
 
+            //establishs a connection with database
             String selcmd = "SELECT bug_id, code FROM tbl_bug ORDER BY bug_id";
 
             mySqlCommand = new SqlCeCommand(selcmd, mySqlConnection);
@@ -50,15 +52,14 @@ namespace BugReporter
 
         private void LoadSubjects()
         {
-           
-
+            //selects id from database and lists them in a combobox, so user can select
             using (SqlCeCommand cmd = new SqlCeCommand ("SELECT bug_id FROM tbl_bug", mySqlConnection))
             {
                 using (IDataReader dr = cmd.ExecuteReader())
                 {
                     while (dr.Read())
                     {
-                        comboBox1.Items.Add(dr["bug_id"].ToString());
+                        comboBox1.Items.Add(dr["bug_id"].ToString()); // adds list of id's to comboBox to select some code
                     }
                 }
             }
@@ -67,16 +68,16 @@ namespace BugReporter
 
         private void Code()
         {
-            int code = comboBox1.SelectedIndex + 1;
+            int code = comboBox1.SelectedIndex + 1; // had to add plus one, as it was retriving id as the previous number, so if picked bug_id2, it would give me 1's code
 
-            string sqlquery = "SELECT code FROM tbl_bug WHERE bug_id = " + code;
+            //selectes the code from the database, where = to what bug id selected
+            string sqlquery = "SELECT code FROM tbl_bug WHERE bug_id = " + code;   
 
             SqlCeCommand command = new SqlCeCommand(sqlquery, mySqlConnection);
 
-
             try
             {
-
+                //reads the command and exports code from database to the textbox - txtCode
                 SqlCeDataReader sdr = command.ExecuteReader();
 
                 while (sdr.Read())
@@ -100,7 +101,7 @@ namespace BugReporter
         {
             if (comboBox1.SelectedIndex >= 0)
             {
-                Code();
+                Code();//runs code method when button clicked
             }
             else
             {
@@ -120,21 +121,22 @@ namespace BugReporter
         }
 
 
-
-
         private void Update_Click(object sender, EventArgs e)
         {
-              SqlCeCommand cmd = new SqlCeCommand("UPDATE tbl_bug SET bug_id = @bug_id, code = @code, status = @status, importance = @importance WHERE bug_id = @bug_id", mySqlConnection);
 
-              cmd.Parameters.AddWithValue("@bug_id", comboBox1.Text);
-              cmd.Parameters.AddWithValue("@code", txtCode.Text);
-              cmd.Parameters.AddWithValue("@status", txtStatus.Text);
-              cmd.Parameters.AddWithValue("@importance", cmbImp.Text);
-              cmd.ExecuteNonQuery();
+            //when the update button is clicked, runs SQL update query and adds all new fields to the database
+            SqlCeCommand cmd = new SqlCeCommand("UPDATE tbl_bug SET bug_id = @bug_id, code = @code, status = @status, importance = @importance WHERE bug_id = @bug_id", mySqlConnection);
 
-              LoadBug ld = new LoadBug();
-              this.Close();
-              ld.Show();
+            //adds the the text fields and combo fields to the query, so can add to database
+            cmd.Parameters.AddWithValue("@bug_id", comboBox1.Text);
+            cmd.Parameters.AddWithValue("@code", txtCode.Text);
+            cmd.Parameters.AddWithValue("@status", txtStatus.Text);
+            cmd.Parameters.AddWithValue("@importance", cmbImp.Text);
+            cmd.ExecuteNonQuery();
+
+            LoadBug ld = new LoadBug();
+            this.Close();
+            ld.Show();
  
                 
         }

@@ -37,7 +37,7 @@ namespace BugReporter
         public bool checkInputs()
         {
             bool rtnvalue = true;
-
+            //checks if empty
             if (string.IsNullOrEmpty(txt_user_name.Text) ||
                 string.IsNullOrEmpty(txt_password.Text))
             {
@@ -51,16 +51,18 @@ namespace BugReporter
 
         public void login()
         {
-           
+           //checks fields are empty
 
             if (txt_user_name.Text != "" & txt_password.Text != "")
             {
                 string queryText = @"SELECT Count(*) FROM users 
                              WHERE user_name = @user_name AND password = @password";
+                //makes connection to database, and writes a insert query
                 using (SqlCeConnection cn = new SqlCeConnection(@"Data Source=C:\temp\Mydatabase.sdf "))
                 using (SqlCeCommand cmd = new SqlCeCommand(queryText, cn))
                 {
                     cn.Open();
+                    //opens connection, sets fields with names like user_name
                     cmd.Parameters.AddWithValue("@user_name", txt_user_name.Text);
                     cmd.Parameters.AddWithValue("@password", txt_password.Text);
                     int result = (int)cmd.ExecuteScalar();

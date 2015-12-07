@@ -26,12 +26,14 @@ namespace BugReporter
         {
             mySqlConnection = new SqlCeConnection(@"Data Source=C:\temp\Mydatabase.sdf ");
 
+            //establishes a connection
             String selcmd = "SELECT user_name, password FROM users ORDER BY user_name";
 
             SqlCeCommand mySqlCommand = new SqlCeCommand(selcmd, mySqlConnection);
 
             try
             {
+                //opens up connection to database
                 mySqlConnection.Open();
 
                 SqlCeDataReader mySqlDataReader = mySqlCommand.ExecuteReader();
@@ -48,7 +50,7 @@ namespace BugReporter
         public bool checkInputs()
         {
             bool rtnvalue = true;
-
+            //checks to see if inputs are empty
             if (string.IsNullOrEmpty(textBox1.Text) ||
                 string.IsNullOrEmpty(textBox2.Text))
             {
@@ -62,11 +64,12 @@ namespace BugReporter
 
         public void insertRecord(String user, String pass, String commandString)
         {
-
             try
             {
+                //makes a new command with the query created in commandstring
                 SqlCeCommand cmdInsert = new SqlCeCommand(commandString, mySqlConnection);
 
+                //adds fields from textbox to query
                 cmdInsert.Parameters.AddWithValue("@user", user);
                 cmdInsert.Parameters.AddWithValue("@pass", pass);
                 cmdInsert.ExecuteNonQuery();
@@ -84,7 +87,7 @@ namespace BugReporter
         {
             if (checkInputs())
             {
-
+                //makes a sql query to insert data
                 String commandString = "INSERT INTO users(user_name, password) VALUES (@user, @pass)";
                 insertRecord(textBox1.Text, textBox2.Text, commandString);
                 populateListBox();

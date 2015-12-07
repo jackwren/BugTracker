@@ -28,12 +28,14 @@ namespace BugReporter
     	{
        	mySqlConnection = new SqlCeConnection(@"Data Source=C:\temp\Mydatabase.sdf ");
  
+        //writes a select sql statement to access everything
        	String selcmd = "SELECT bug_id, code, status, importance FROM tbl_bug ORDER BY bug_id";
  
        	SqlCeCommand mySqlCommand = new SqlCeCommand(selcmd, mySqlConnection);
  
        	try
        	{
+            //opens connection
            	mySqlConnection.Open();
  
            	SqlCeDataReader mySqlDataReader = mySqlCommand.ExecuteReader();
@@ -55,7 +57,7 @@ namespace BugReporter
         public bool checkInputs()
     	{
         	bool rtnvalue = true;
-        	
+        	//checks if empty
        	if (string.IsNullOrEmpty(txtID.Text) ||
             string.IsNullOrEmpty(txtCode.Text) ||
             string.IsNullOrEmpty(txtStatus.Text) ||
@@ -77,6 +79,7 @@ namespace BugReporter
   	      {
             	SqlCeCommand cmdInsert = new SqlCeCommand(commandString, mySqlConnection);
  
+                //adds paprameters to textboxs to link with sql
                 cmdInsert.Parameters.AddWithValue("@ID", ID);
                 cmdInsert.Parameters.AddWithValue("@code", code);
                 cmdInsert.Parameters.AddWithValue("@status", status);
@@ -96,7 +99,7 @@ namespace BugReporter
         {
           if (checkInputs())
   	      {
- 
+                //writes an insert sql statement  to add all fields to databse
             	String commandString = "INSERT INTO tbl_bug(bug_id, code, status, importance) VALUES (@ID, @code, @status, @importance)";
  
             	insertRecord(txtID.Text, txtCode.Text, txtStatus.Text, cmbImp.Text, commandString);
