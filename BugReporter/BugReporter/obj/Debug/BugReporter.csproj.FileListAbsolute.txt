@@ -1,0 +1,31 @@
+C:\Users\Jack\Dropbox\UNI\ADVANCED SOFTWARE A\BugReporter\BugReporter\bin\Debug\BugReporter.exe.config
+C:\Users\Jack\Dropbox\UNI\ADVANCED SOFTWARE A\BugReporter\BugReporter\bin\Debug\BugReporter.exe
+C:\Users\Jack\Dropbox\UNI\ADVANCED SOFTWARE A\BugReporter\BugReporter\bin\Debug\BugReporter.pdb
+C:\Users\Jack\Dropbox\UNI\ADVANCED SOFTWARE A\BugReporter\BugReporter\obj\Debug\BugReporter.csprojResolveAssemblyReference.cache
+C:\Users\Jack\Dropbox\UNI\ADVANCED SOFTWARE A\BugReporter\BugReporter\obj\Debug\BugReporter.Form1.resources
+C:\Users\Jack\Dropbox\UNI\ADVANCED SOFTWARE A\BugReporter\BugReporter\obj\Debug\BugReporter.Properties.Resources.resources
+C:\Users\Jack\Dropbox\UNI\ADVANCED SOFTWARE A\BugReporter\BugReporter\obj\Debug\BugReporter.ReportBug.resources
+C:\Users\Jack\Dropbox\UNI\ADVANCED SOFTWARE A\BugReporter\BugReporter\obj\Debug\BugReporter.csproj.GenerateResource.Cache
+C:\Users\Jack\Dropbox\UNI\ADVANCED SOFTWARE A\BugReporter\BugReporter\obj\Debug\BugReporter.exe
+C:\Users\Jack\Dropbox\UNI\ADVANCED SOFTWARE A\BugReporter\BugReporter\obj\Debug\BugReporter.pdb
+F:\ASA\BugReporter\BugReporter\bin\Debug\BugReporter.exe.config
+F:\ASA\BugReporter\BugReporter\obj\Debug\BugReporter.exe
+F:\ASA\BugReporter\BugReporter\obj\Debug\BugReporter.pdb
+F:\ASA\BugReporter\BugReporter\bin\Debug\BugReporter.exe
+F:\ASA\BugReporter\BugReporter\bin\Debug\BugReporter.pdb
+F:\ASA\BugReporter\BugReporter\bin\Debug\mscorlib.dll
+F:\ASA\BugReporter\BugReporter\bin\Debug\normidna.nlp
+F:\ASA\BugReporter\BugReporter\bin\Debug\normnfc.nlp
+F:\ASA\BugReporter\BugReporter\bin\Debug\normnfd.nlp
+F:\ASA\BugReporter\BugReporter\bin\Debug\normnfkc.nlp
+F:\ASA\BugReporter\BugReporter\bin\Debug\normnfkd.nlp
+F:\ASA\BugReporter\BugReporter\obj\Debug\BugReporter.csprojResolveAssemblyReference.cache
+F:\ASA\BugReporter\BugReporter\obj\Debug\BugReporter.Properties.Resources.resources
+F:\ASA\BugReporter\BugReporter\obj\Debug\BugReporter.ReportBug.resources
+F:\ASA\BugReporter\BugReporter\obj\Debug\BugReporter.csproj.GenerateResource.Cache
+F:\ASA\BugReporter\BugReporter\obj\Debug\BugReporter.LoadBug.resources
+F:\ASA\BugReporter\BugReporter\obj\Debug\BugReporter.Home.resources
+F:\ASA\BugReporter\BugReporter\obj\Debug\BugReporter.Login.resources
+F:\ASA\BugReporter\BugReporter\obj\Debug\BugReporter.Register.resources
+F:\ASA\BugReporter\BugReporter\obj\Debug\BugReporter.EditData.resources
+F:\ASA\BugReporter\BugReporter\bin\Debug\ICSharpCode.TextEditor.dll

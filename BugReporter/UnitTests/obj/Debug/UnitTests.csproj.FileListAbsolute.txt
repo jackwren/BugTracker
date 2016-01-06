@@ -1,0 +1,5 @@
+F:\ASA\BugReporter\UnitTests\obj\Debug\UnitTests.csprojResolveAssemblyReference.cache
+F:\ASA\BugReporter\UnitTests\bin\Debug\UnitTests.dll
+F:\ASA\BugReporter\UnitTests\bin\Debug\UnitTests.pdb
+F:\ASA\BugReporter\UnitTests\obj\Debug\UnitTests.dll
+F:\ASA\BugReporter\UnitTests\obj\Debug\UnitTests.pdb
