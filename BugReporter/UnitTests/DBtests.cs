@@ -1,6 +1,6 @@
 ﻿using System;
-using BugReporter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+//using BugReporter;
 
 namespace UnitTests
 {
@@ -10,7 +10,9 @@ namespace UnitTests
         [TestMethod]
         public void Dbtest()
         {
-           
+           // DBcon dbA = new DBcon();
+
+            
         }
     }
 }

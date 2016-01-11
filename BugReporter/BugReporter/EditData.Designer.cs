@@ -43,6 +43,11 @@
             this.textEditorControl1 = new ICSharpCode.TextEditor.TextEditorControl();
             this.label6 = new System.Windows.Forms.Label();
             this.txt_User = new System.Windows.Forms.TextBox();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
             // cmbImp
@@ -54,23 +59,23 @@
             "Medium",
             "Low",
             "Very Low"});
-            this.cmbImp.Location = new System.Drawing.Point(88, 464);
+            this.cmbImp.Location = new System.Drawing.Point(88, 551);
             this.cmbImp.Name = "cmbImp";
             this.cmbImp.Size = new System.Drawing.Size(167, 21);
             this.cmbImp.TabIndex = 20;
             // 
             // txtStatus
             // 
-            this.txtStatus.Location = new System.Drawing.Point(88, 408);
+            this.txtStatus.Location = new System.Drawing.Point(88, 478);
             this.txtStatus.Multiline = true;
             this.txtStatus.Name = "txtStatus";
-            this.txtStatus.Size = new System.Drawing.Size(331, 28);
+            this.txtStatus.Size = new System.Drawing.Size(263, 28);
             this.txtStatus.TabIndex = 19;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 467);
+            this.label4.Location = new System.Drawing.Point(12, 551);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(60, 13);
             this.label4.TabIndex = 18;
@@ -79,7 +84,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(27, 411);
+            this.label3.Location = new System.Drawing.Point(28, 481);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(37, 13);
             this.label3.TabIndex = 17;
@@ -105,7 +110,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(531, 491);
+            this.button2.Location = new System.Drawing.Point(835, 640);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(99, 38);
             this.button2.TabIndex = 13;
@@ -115,7 +120,7 @@
             // 
             // Update
             // 
-            this.Update.Location = new System.Drawing.Point(401, 491);
+            this.Update.Location = new System.Drawing.Point(704, 640);
             this.Update.Name = "Update";
             this.Update.Size = new System.Drawing.Size(99, 38);
             this.Update.TabIndex = 12;
@@ -143,7 +148,7 @@
             // 
             // load
             // 
-            this.load.Location = new System.Drawing.Point(604, 121);
+            this.load.Location = new System.Drawing.Point(849, 121);
             this.load.Name = "load";
             this.load.Size = new System.Drawing.Size(75, 23);
             this.load.TabIndex = 23;
@@ -156,7 +161,7 @@
             this.textEditorControl1.IsReadOnly = false;
             this.textEditorControl1.Location = new System.Drawing.Point(88, 121);
             this.textEditorControl1.Name = "textEditorControl1";
-            this.textEditorControl1.Size = new System.Drawing.Size(510, 260);
+            this.textEditorControl1.Size = new System.Drawing.Size(737, 304);
             this.textEditorControl1.TabIndex = 24;
             this.textEditorControl1.Load += new System.EventHandler(this.textEditorControl1_Load);
             // 
@@ -176,11 +181,46 @@
             this.txt_User.Size = new System.Drawing.Size(128, 20);
             this.txt_User.TabIndex = 26;
             // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(700, 491);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(224, 95);
+            this.listBox1.TabIndex = 27;
+            this.listBox1.DoubleClick += new System.EventHandler(this.listBox1_DoubleClick);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(541, 493);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(131, 13);
+            this.label7.TabIndex = 28;
+            this.label7.Text = "Select a Folder to save to:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(411, 651);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(261, 16);
+            this.label8.TabIndex = 29;
+            this.label8.Text = "Please upload your code to Drop Box also";
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // EditData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(709, 559);
+            this.ClientSize = new System.Drawing.Size(967, 690);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.txt_User);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.textEditorControl1);
@@ -198,6 +238,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "EditData";
             this.Text = "EditData";
+            this.Load += new System.EventHandler(this.EditData_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -219,5 +260,10 @@
         private ICSharpCode.TextEditor.TextEditorControl textEditorControl1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txt_User;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }

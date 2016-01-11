@@ -26,12 +26,12 @@ namespace BugReporter.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Text {
+        public string AccessToken {
             get {
-                return ((string)(this["Text"]));
+                return ((string)(this["AccessToken"]));
             }
             set {
-                this["Text"] = value;
+                this["AccessToken"] = value;
             }
         }
     }

@@ -10,18 +10,23 @@ using System.Windows.Forms;
 using System.Data.SqlServerCe;
 using ICSharpCode.TextEditor.Document;
 using System.IO;
+using Nemiro.OAuth;
+using Nemiro.OAuth.LoginForms;
 
 namespace BugReporter
 {
     public partial class ReportBug : Form
     {
+        private string CurrentPath = "/";
 
         SqlCeConnection mySqlConnection;
+        SqlCeDataReader mySqlDataReader;
         
         public ReportBug()
         {
             InitializeComponent();
             populateListBox();
+            getID();
             
         }
 
@@ -40,7 +45,7 @@ namespace BugReporter
             //opens connection
            	mySqlConnection.Open();
  
-           	SqlCeDataReader mySqlDataReader = mySqlCommand.ExecuteReader();
+           	mySqlDataReader = mySqlCommand.ExecuteReader();
         }
  
        	catch (SqlCeException ex)
@@ -53,10 +58,21 @@ namespace BugReporter
  
     	public void cleartxtBoxes()
     	{
-        	txtID.Text = txtStatus.Text = cmbImp.Text = "";
+        	txtStatus.Text = cmbImp.Text = "";
             textEditorControl1.Text = string.Empty;
     	}
- 
+
+        //establishes id so the next one is selected
+        public void getID() 
+        {
+            while (mySqlDataReader.Read())
+            {
+                int getId = Convert.ToInt32(mySqlDataReader["bug_id"]) + 1;
+                string myString = getId.ToString();
+                txtID.Text = myString;
+            }
+        }
+
         public bool checkInputs()
     	{
         	bool rtnvalue = true;
@@ -101,6 +117,20 @@ namespace BugReporter
 
         private void button1_Click(object sender, EventArgs e)
         {
+
+            if (openFileDialog1.ShowDialog() != System.Windows.Forms.DialogResult.OK) { return; }
+            OAuthUtility.PutAsync("https://content.dropboxapi.com/1/files_put/auto/", new HttpParameterCollection
+            {
+                {"access_token",Properties.Settings.Default.AccessToken},
+                {"path", Path.Combine(this.CurrentPath, Path.GetFileName(openFileDialog1.FileName)).Replace("\\","/")},
+                {"overwrite","true"},
+                {"autorename", "true"},
+                {openFileDialog1.OpenFile()},
+            },
+            callback: Upload_Result
+                );
+
+
           if (checkInputs())
   	      {
                 //writes an insert sql statement  to add all fields to databse
@@ -145,5 +175,141 @@ namespace BugReporter
         {
             
         }
+
+        private void ReportBug_Load(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(Properties.Settings.Default.AccessToken))
+            {
+                this.GetAccessToken();
+
+            }
+            else
+            {
+                this.GetFiles();
+            }
+
+        }
+        private void GetAccessToken()
+        {
+            var login = new DropboxLogin("7ejoi3gpspe8fqv", "zwtn1hf42s1v04s");
+            login.Owner = this;
+            login.ShowDialog();
+
+            if (login.IsSuccessfully)
+            {
+                Properties.Settings.Default.AccessToken = login.AccessToken.Value;
+                Properties.Settings.Default.Save();
+            }
+            else
+            {
+                MessageBox.Show("Error");
+            }
+        }
+
+        private void GetFiles()
+        {
+            OAuthUtility.GetAsync
+                ("https://api.dropboxapi.com/1/metadata/auto/",
+                new HttpParameterCollection { 
+                { "path", this.CurrentPath }, 
+                { "access_token", Properties.Settings.Default.AccessToken } 
+                },
+                callback: GetFiles_Result);
+        }
+
+        private void GetFiles_Result(RequestResult result)
+        {
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new Action<RequestResult>(GetFiles_Result), result);
+                return;
+            }
+            if (result.StatusCode == 200)
+            {
+                listBox1.Items.Clear();
+                listBox1.DisplayMember = "path";
+
+
+                foreach (UniValue file in result["contents"])
+                {
+                    listBox1.Items.Add(file);
+
+                }
+                if (this.CurrentPath != "/")
+                {
+                    listBox1.Items.Insert(0, UniValue.ParseJson("{path: '..'}"));
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Error");
+            }
+        }
+
+        private void Upload_Result(RequestResult result)
+        {
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new Action<RequestResult>(Upload_Result), result);
+                return;
+            }
+
+            if (result.StatusCode == 200)
+            {
+                this.GetFiles();
+            }
+            else
+            {
+                if (result["error"].HasValue)
+                {
+                    MessageBox.Show(result["error"].ToString());
+
+                }
+                else
+                {
+                    MessageBox.Show(result.ToString());
+
+
+                }
+
+            }
+        }
+
+        private void listBox1_DoubleClick(object sender, EventArgs e)
+        {
+            if (listBox1.SelectedItem == null) { return; }
+            UniValue file = (UniValue)listBox1.SelectedItem;
+
+            if (file["path"] == "..")
+            {
+                if (this.CurrentPath != "/")
+                {
+                    this.CurrentPath = Path.GetDirectoryName(this.CurrentPath).Replace("\\", "/");
+                }
+            }
+            else
+            {
+                if (file["is_dir"] == 1)
+                {
+                    this.CurrentPath = file["path"].ToString();
+
+                }
+                else
+                {
+                    saveFileDialog1.FileName = Path.GetFileName(file["path"].ToString());
+                    if (saveFileDialog1.ShowDialog() != System.Windows.Forms.DialogResult.OK)
+                    {
+                        return;
+                    }
+
+                    //var web = new WebClient();
+                    //web.DownloadFile(String.Format("https://content.dropboxapi.com/1/files/auto/{0}?access_token={1}", file["path"], Properties.Settings.Default.AccessToken), saveFileDialog1.FileName);
+                }
+            }
+            this.GetFiles();
+        }
+
+
     }
 }

@@ -53,7 +53,7 @@
             this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(895, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1148, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -129,7 +129,7 @@
             // log_out
             // 
             this.log_out.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.log_out.Location = new System.Drawing.Point(731, 549);
+            this.log_out.Location = new System.Drawing.Point(997, 750);
             this.log_out.Name = "log_out";
             this.log_out.Size = new System.Drawing.Size(139, 54);
             this.log_out.TabIndex = 2;
@@ -141,7 +141,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(819, 517);
+            this.label1.Location = new System.Drawing.Point(1094, 718);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(42, 18);
             this.label1.TabIndex = 4;
@@ -151,7 +151,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(728, 517);
+            this.label2.Location = new System.Drawing.Point(1003, 718);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(76, 18);
             this.label2.TabIndex = 6;
@@ -162,7 +162,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(895, 615);
+            this.ClientSize = new System.Drawing.Size(1148, 816);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.log_out);

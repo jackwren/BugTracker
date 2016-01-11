@@ -39,9 +39,19 @@
     <Reference Include="ICSharpCode.TextEditor">
       <HintPath>..\..\ICSharpCode.TextEditor.dll</HintPath>
     </Reference>
+    <Reference Include="Nemiro.OAuth">
+      <HintPath>..\packages\Nemiro.OAuth.1.10\lib\net451\Nemiro.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Nemiro.OAuth.LoginForms">
+      <HintPath>..\packages\Nemiro.OAuth.LoginForms.1.4\lib\net452\Nemiro.OAuth.LoginForms.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="System.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.1\System.Web.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -119,6 +129,7 @@
     <EmbeddedResource Include="ReportBug.resx">
       <DependentUpon>ReportBug.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

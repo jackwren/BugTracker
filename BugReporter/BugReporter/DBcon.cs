@@ -7,7 +7,7 @@ using System.Data.SqlServerCe;
 
 namespace BugReporter
 {
-    class DBcon
+    public class DBcon
     {
        
         SqlCeConnection mySqlConnection;
